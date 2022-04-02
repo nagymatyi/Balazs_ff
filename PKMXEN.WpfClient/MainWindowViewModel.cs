@@ -28,10 +28,10 @@ namespace PKMXEN.WpfClient
                     selectedCarrier = new Carrier()
                     {
                         Name = value.Name,
-                        CarrierID = value.CarrierID,
-                        Age = value.Age,
-                        Salary = value.Salary,
-                        TotalNumberOfParcels = value.TotalNumberOfParcels
+                        CarrierID = value.CarrierID
+                        //Age = value.Age,
+                        //Salary = value.Salary,
+                        //TotalNumberOfParcels = value.TotalNumberOfParcels
                     };
                     OnPropertyChanged();
                     (DeleteCarrierCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -67,27 +67,18 @@ namespace PKMXEN.WpfClient
         {
             if (!IsInDesignMode)
             {
-
-                Carriers = new RestCollection<Carrier>("http://localhost:33503/", "carrier");
+                Carriers = new RestCollection<Carrier>("http://localhost:33503/", "carrier", "hub");
 
                 CreateCarrierCommand = new RelayCommand(() =>
                 {
                     Carriers.Add(new Carrier()
                     {
-                        Name = "XYZ"
+                        //todo
+                        Name = SelectedCarrier.Name
                     });
                 });
 
-                DeleteCarrierCommand = new RelayCommand(() =>
-                {
-                    Carriers.Delete(SelectedCarrier.CarrierID);
-                },
-                () =>
-                {
-                    return SelectedCarrier != null;
-                });
-                SelectedCarrier = new Carrier();
-
+                //do nothing
                 UpdateCarrierCommand = new RelayCommand(() =>
                 {
                     try
@@ -99,6 +90,17 @@ namespace PKMXEN.WpfClient
                         ErrorMessage = ex.Message;
                     }
                 });
+
+                //not working
+                DeleteCarrierCommand = new RelayCommand(() =>
+                {
+                    Carriers.Delete(SelectedCarrier.CarrierID);
+                },
+                () =>
+                {
+                    return SelectedCarrier != null;
+                });
+                SelectedCarrier = new Carrier();
             }
         }
     }

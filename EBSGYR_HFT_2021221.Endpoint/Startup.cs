@@ -24,6 +24,8 @@ namespace PKMXEN.Endpoint
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IParcelRepository, ParcelRepository>();
             services.AddSingleton<ShippingDbContext, ShippingDbContext>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +41,7 @@ namespace PKMXEN.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
