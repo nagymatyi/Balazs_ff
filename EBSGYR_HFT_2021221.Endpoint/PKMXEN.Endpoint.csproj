@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EBSGYR_HFT_2021221.Data\PKMXEN.Data.csproj" />
+    <ProjectReference Include="..\EBSGYR_HFT_2021221.Logic\PKMXEN.Logic.csproj" />
+    <ProjectReference Include="..\EBSGYR_HFT_2021221.Models\PKMXEN.Models.csproj" />
+    <ProjectReference Include="..\EBSGYR_HFT_2021221.Repository\PKMXEN.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
