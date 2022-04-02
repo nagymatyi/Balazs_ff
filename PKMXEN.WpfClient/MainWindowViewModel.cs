@@ -28,10 +28,11 @@ namespace PKMXEN.WpfClient
                     selectedCarrier = new Carrier()
                     {
                         Name = value.Name,
-                        CarrierID = value.CarrierID
-                        //Age = value.Age,
-                        //Salary = value.Salary,
-                        //TotalNumberOfParcels = value.TotalNumberOfParcels
+                        CarrierID = value.CarrierID,
+                        Age = value.Age,
+                        Salary = value.Salary,
+                        Orders = value.Orders,
+                        TotalNumberOfParcels = value.TotalNumberOfParcels
                     };
                     OnPropertyChanged();
                     (DeleteCarrierCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -69,16 +70,19 @@ namespace PKMXEN.WpfClient
             {
                 Carriers = new RestCollection<Carrier>("http://localhost:33503/", "carrier", "hub");
 
+                //not working
                 CreateCarrierCommand = new RelayCommand(() =>
                 {
                     Carriers.Add(new Carrier()
                     {
-                        //todo
-                        Name = SelectedCarrier.Name
+                        Name = SelectedCarrier.Name,
+                        Orders = SelectedCarrier.Orders,
+                        Age = SelectedCarrier.Age,
+                        TotalNumberOfParcels= SelectedCarrier.TotalNumberOfParcels,
+                        Salary = SelectedCarrier.Salary
                     });
                 });
 
-                //do nothing
                 UpdateCarrierCommand = new RelayCommand(() =>
                 {
                     try
@@ -91,7 +95,6 @@ namespace PKMXEN.WpfClient
                     }
                 });
 
-                //not working
                 DeleteCarrierCommand = new RelayCommand(() =>
                 {
                     Carriers.Delete(SelectedCarrier.CarrierID);

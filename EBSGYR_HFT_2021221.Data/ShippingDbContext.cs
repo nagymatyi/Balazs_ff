@@ -35,13 +35,21 @@ namespace PKMXEN.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Carrier>(entity =>
+            {
+                entity
+                .HasMany<Order>(o => o.Orders)
+                .WithOne(o => o.Carrier)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
             modelBuilder.Entity<Order>(entity =>
             {
                 entity
                 .HasOne(o => o.Carrier)
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CarrierID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             });
 
@@ -51,7 +59,7 @@ namespace PKMXEN.Data
                 .HasOne(p => p.Orders)
                 .WithMany(o => o.Parcel)
                 .HasForeignKey(p => p.OrderID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             // Creating Sample Order Data
