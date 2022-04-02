@@ -70,7 +70,6 @@ namespace PKMXEN.WpfClient
             {
                 Carriers = new RestCollection<Carrier>("http://localhost:33503/", "carrier", "hub");
 
-                //not working
                 CreateCarrierCommand = new RelayCommand(() =>
                 {
                     Carriers.Add(new Carrier()
