@@ -2,6 +2,7 @@
 using PKMXEN.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.SignalR;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,9 +13,11 @@ namespace PKMXEN.Endpoint.Controllers
     public class ParcelController : ControllerBase
     {
         IParcelLogic pl;
-        public ParcelController(IParcelLogic pl)
+        IHubContext<SignalRHub> hub;
+        public ParcelController(IParcelLogic pl, IHubContext<SignalRHub> hub)
         {
             this.pl = pl;
+            this.hub = hub;
         }
 
         // GET: api/<ParcelController>
@@ -36,6 +39,7 @@ namespace PKMXEN.Endpoint.Controllers
         public void Post([FromBody] Parcel value)
         {
             pl.Create(value);
+            this.hub.Clients.All.SendAsync("ParcelCreated", value);
         }
 
         // PUT api/<ParcelController>/5
@@ -43,13 +47,16 @@ namespace PKMXEN.Endpoint.Controllers
         public void Put([FromBody] Parcel value)
         {
             pl.Update(value);
+            this.hub.Clients.All.SendAsync("ParcelUpdated", value);
         }
 
         // DELETE api/<ParcelController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var parcelToDelete = pl.Read(id);
             pl.Delete(id);
+            this.hub.Clients.All.SendAsync("ParcelDeleted", parcelToDelete);
         }
     }
 }

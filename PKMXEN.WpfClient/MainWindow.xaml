@@ -13,20 +13,55 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Carriers}" SelectedItem="{Binding SelectedCarrier}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Carriers}" SelectedItem="{Binding SelectedCarrier}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="Name" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedCarrier.Name}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Carrier" Command="{Binding CreateCarrierCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Carrier" Command="{Binding DeleteCarrierCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Carrier" Command="{Binding UpdateCarrierCommand}" Margin="10" Padding="10"/>
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
+        <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding OrderDescription}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Description" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedOrder.OrderDescription}" Padding="10" Margin="0,0,0,30"/>
+            <Button Content="Create Order" Command="{Binding CreateOrderCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Order" Command="{Binding DeleteOrderCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Order" Command="{Binding UpdateOrderCommand}" Margin="10" Padding="10"/>
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
+        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Parcels}" SelectedItem="{Binding SelectedParcel}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Address}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label Content="Address" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedParcel.Address}" Padding="10" Margin="0,0,0,30"/>
+            <Button Content="Create Parcel" Command="{Binding CreateParcelCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Parcel" Command="{Binding DeleteParcelCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Parcel" Command="{Binding UpdateParcelCommand}" Margin="10" Padding="10"/>
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
     </Grid>
