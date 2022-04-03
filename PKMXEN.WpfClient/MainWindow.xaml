@@ -22,7 +22,15 @@
         <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Carriers}" SelectedItem="{Binding SelectedCarrier}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}, {1}, {2}">
+                                <Binding Path="Name"/>
+                                <Binding Path="Age"/>
+                                <Binding Path="Salary"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -148,6 +148,7 @@ namespace PKMXEN.WpfClient
 
                 UpdateCarrierCommand = new RelayCommand(() =>
                 {
+                    new CarrierEditorWindow(SelectedCarrier).ShowDialog();
                     try
                     {
                         Carriers.Update(SelectedCarrier);
