@@ -136,11 +136,12 @@ namespace PKMXEN.WpfClient
                 //Carrier CRUD
                 CreateCarrierCommand = new RelayCommand(() =>
                 {
+                    new CarrierEditorWindow(SelectedCarrier).ShowDialog();
                     Carriers.Add(new Carrier()
                     {
                         Name = SelectedCarrier.Name,
                         Age = SelectedCarrier.Age,
-                        TotalNumberOfParcels= SelectedCarrier.TotalNumberOfParcels,
+                        TotalNumberOfParcels = SelectedCarrier.TotalNumberOfParcels,
                         Salary = SelectedCarrier.Salary
                     });
                 });
