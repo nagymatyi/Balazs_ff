@@ -71,8 +71,8 @@ namespace PKMXEN.WpfClient
                     selectedOrder = new Order()
                     {
                         OrderDescription = value.OrderDescription,
-                        OrderDate = value.OrderDate,
                         OrderID = value.OrderID,
+                        OrderDate = value.OrderDate,
                         OrderValue = value.OrderValue,
                         CarrierID = value.CarrierID,
                     };
@@ -139,7 +139,6 @@ namespace PKMXEN.WpfClient
                     Carriers.Add(new Carrier()
                     {
                         Name = SelectedCarrier.Name,
-                        Orders = SelectedCarrier.Orders,
                         Age = SelectedCarrier.Age,
                         TotalNumberOfParcels= SelectedCarrier.TotalNumberOfParcels,
                         Salary = SelectedCarrier.Salary
@@ -169,7 +168,6 @@ namespace PKMXEN.WpfClient
 
 
                 //Order CRUD
-                //not working
                 CreateOrderCommand = new RelayCommand(() =>
                 {
                     Orders.Add(new Order()
