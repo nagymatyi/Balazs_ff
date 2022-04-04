@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PKMXEN.WpfClient
+namespace PKMXEN.WpfClient.ViewModels
 {
     public class CarrierEditorWindowViewModel
     {

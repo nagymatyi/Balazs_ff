@@ -2,15 +2,11 @@
 using Microsoft.Toolkit.Mvvm.Input;
 using PKMXEN.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PKMXEN.WpfClient
+namespace PKMXEN.WpfClient.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
@@ -172,6 +168,7 @@ namespace PKMXEN.WpfClient
                 //Order CRUD
                 CreateOrderCommand = new RelayCommand(() =>
                 {
+                    new OrderEditorWindow(SelectedOrder).ShowDialog();
                     Orders.Add(new Order()
                     {
                         OrderDescription = SelectedOrder.OrderDescription,
@@ -184,6 +181,7 @@ namespace PKMXEN.WpfClient
                 //not working
                 UpdateOrderCommand = new RelayCommand(() =>
                 {
+                    new OrderEditorWindow(SelectedOrder).ShowDialog();
                     try
                     {
                         Orders.Update(SelectedOrder);

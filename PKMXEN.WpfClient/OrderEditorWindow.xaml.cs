@@ -7,15 +7,15 @@ using System.Windows.Controls;
 namespace PKMXEN.WpfClient
 {
     /// <summary>
-    /// Interaction logic for CarrierEditorWindow.xaml
+    /// Interaction logic for OrderEditorWindow.xaml
     /// </summary>
-    public partial class CarrierEditorWindow : Window
+    public partial class OrderEditorWindow : Window
     {
-        public CarrierEditorWindow(Carrier carrier)
+        public OrderEditorWindow(Order order)
         {
             InitializeComponent();
-            var vm = new CarrierEditorWindowViewModel();
-            vm.Setup(carrier);
+            var vm = new OrderEditorWindowViewModel();
+            vm.Setup(order);
             this.DataContext = vm;
         }
 
