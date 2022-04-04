@@ -111,7 +111,6 @@ namespace PKMXEN.WpfClient.ViewModels
             }
         }
 
-
         public static bool IsInDesignMode
         {
             get

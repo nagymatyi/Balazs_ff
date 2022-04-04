@@ -58,7 +58,7 @@ namespace PKMXEN.Logic
         public IEnumerable<KeyValuePair<string, double>> AVGPriceByCarriers()
         {
             return from x in orderRepository.ReadAll()
-                   group x by x.Carrier.Name into g
+                   group x by x.Carriers.Name into g
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.OrderValue));
         }

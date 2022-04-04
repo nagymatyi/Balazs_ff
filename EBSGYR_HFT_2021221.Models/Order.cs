@@ -30,7 +30,7 @@ namespace PKMXEN.Models
         public virtual ICollection<Parcel> Parcel { get; set; }
 
         [NotMapped]
-        public virtual Carrier Carrier { get; set; }
+        public virtual Carrier Carriers { get; set; }
 
         public override string ToString()
         {

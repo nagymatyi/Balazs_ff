@@ -16,7 +16,7 @@
             <Label Content="Order value" Padding="10" Background="LightBlue" />
             <TextBox Text="{Binding Actual.OrderValue, UpdateSourceTrigger=Explicit}" Padding="10"/>
             <Label Content="Order date" Padding="10" Background="LightBlue" />
-            <Label Content="{Binding Actual.OrderDate, UpdateSourceTrigger=Explicit}" Padding="10"/>
+            <TextBox Text="{Binding Actual.OrderDate, UpdateSourceTrigger=Explicit}" Padding="10"/>
             <Button Content="Save" Padding="10" Click="Button_Click"/>
         </StackPanel>
     </Grid>

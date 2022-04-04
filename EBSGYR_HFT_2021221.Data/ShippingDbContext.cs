@@ -39,14 +39,14 @@ namespace PKMXEN.Data
             {
                 entity
                 .HasMany<Order>(o => o.Orders)
-                .WithOne(o => o.Carrier)
+                .WithOne(o => o.Carriers)
                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Order>(entity =>
             {
                 entity
-                .HasOne(o => o.Carrier)
+                .HasOne(o => o.Carriers)
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CarrierID)
                 .OnDelete(DeleteBehavior.Cascade);

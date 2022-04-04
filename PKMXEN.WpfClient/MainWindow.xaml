@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PKMXEN.WpfClient"
         xmlns:vm="clr-namespace:PKMXEN.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="Editor" Height="450" Width="800">
+        Title="Editor" Height="450" Width="1000">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -25,7 +25,7 @@
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0}, {1}, {2}">
+                            <MultiBinding StringFormat="{}{0}, age: {1}, salary: {2}">
                                 <Binding Path="Name"/>
                                 <Binding Path="Age"/>
                                 <Binding Path="Salary"/>
@@ -39,12 +39,19 @@
             <Button Content="Create Carrier" Command="{Binding CreateCarrierCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Carrier" Command="{Binding DeleteCarrierCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Carrier" Command="{Binding UpdateCarrierCommand}" Margin="10" Padding="10"/>
-            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
         <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding OrderDescription}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}: description: {1}, value: {2}">
+                                <Binding Path="OrderID"/>
+                                <Binding Path="OrderDescription"/>
+                                <Binding Path="OrderValue"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -52,12 +59,19 @@
             <Button Content="Create Order" Command="{Binding CreateOrderCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Order" Command="{Binding DeleteOrderCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Order" Command="{Binding UpdateOrderCommand}" Margin="10" Padding="10"/>
-            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
         <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Parcels}" SelectedItem="{Binding SelectedParcel}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Address}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Customer name: {0}, address: {1}, weight: {2}">
+                                <Binding Path="CustomerName"/>
+                                <Binding Path="Address"/>
+                                <Binding Path="Weight"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -65,7 +79,6 @@
             <Button Content="Create Parcel" Command="{Binding CreateParcelCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Parcel" Command="{Binding DeleteParcelCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Parcel" Command="{Binding UpdateParcelCommand}" Margin="10" Padding="10"/>
-            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
     </Grid>
 </Window>
