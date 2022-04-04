@@ -204,6 +204,7 @@ namespace PKMXEN.WpfClient.ViewModels
                 //Parcel CRUD
                 CreateParcelCommand = new RelayCommand(() =>
                 {
+                    new ParcelEditorWindow(SelectedParcel).ShowDialog();
                     Parcels.Add(new Parcel()
                     {
                         Weight = SelectedParcel.Weight,
@@ -219,6 +220,7 @@ namespace PKMXEN.WpfClient.ViewModels
                 //not working
                 UpdateParcelCommand = new RelayCommand(() =>
                 {
+                    new ParcelEditorWindow(SelectedParcel).ShowDialog();
                     try
                     {
                         Parcels.Update(SelectedParcel);
