@@ -44,7 +44,7 @@ namespace PKMXEN.Endpoint.Controllers
         }
 
         // PUT api/<OrderController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Order value)
         {
             ol.Update(value);

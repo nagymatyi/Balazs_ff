@@ -43,7 +43,7 @@ namespace PKMXEN.Endpoint.Controllers
         }
 
         // PUT api/<ParcelController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Parcel value)
         {
             pl.Update(value);
