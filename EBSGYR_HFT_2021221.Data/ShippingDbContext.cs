@@ -35,32 +35,32 @@ namespace PKMXEN.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Carrier>(entity =>
-            {
-                entity
-                .HasMany<Order>(o => o.Orders)
-                .WithOne(o => o.Carriers)
-                .OnDelete(DeleteBehavior.Cascade);
-            });
+            //modelBuilder.Entity<Carrier>(entity =>
+            //{
+            //    entity
+            //    .HasMany<Order>(o => o.Orders)
+            //    .WithOne(o => o.Carriers)
+            //    .OnDelete(DeleteBehavior.Cascade);
+            //});
 
-            modelBuilder.Entity<Order>(entity =>
-            {
-                entity
-                .HasOne(o => o.Carriers)
-                .WithMany(c => c.Orders)
-                .HasForeignKey(o => o.CarrierID)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Order>(entity =>
+            //{
+            //    entity
+            //    .HasOne(o => o.Carriers)
+            //    .WithMany(c => c.Orders)
+            //    .HasForeignKey(o => o.CarrierID)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-            });
+            //});
 
-            modelBuilder.Entity<Parcel>(entity =>
-            {
-                entity
-                .HasOne(p => p.Orders)
-                .WithMany(o => o.Parcel)
-                .HasForeignKey(p => p.OrderID)
-                .OnDelete(DeleteBehavior.Cascade);
-            });
+            //modelBuilder.Entity<Parcel>(entity =>
+            //{
+            //    entity
+            //    .HasOne(p => p.Orders)
+            //    .WithMany(o => o.Parcel)
+            //    .HasForeignKey(p => p.OrderID)
+            //    .OnDelete(DeleteBehavior.Cascade);
+            //});
 
             // Creating Sample Order Data
 
