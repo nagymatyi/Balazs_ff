@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Carrier UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Carrier Catalog</h1>
+
+    <div id="formdiv">
+        <label>Name</label>
+        <input type="text" id="name" />
+        <label>Age</label>
+        <input type="number" id="age" />
+        <label>Salary</label>
+        <input type="number" id="salary" />
+        <label>Total number of parcels</label>
+        <input type="number" id="tnop" />
+        <button type="button" onclick="createCarrier()">Add Carrier</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Total number of parcels</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
