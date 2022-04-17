@@ -7,7 +7,7 @@ async function getdata() {
         .then(x => x.json())
         .then(y => {
             carriers = y;
-            console.log(carriers);
+            //console.log(carriers);
             display();
         });
 }
@@ -18,8 +18,22 @@ function display() {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + t.carrierID + "</td><td>"
             + t.name + "</td><td>" + t.age + "</td><td>" + t.salary
-        + "</td><td>" + t.totalNumberOfParcels + "</td><tr>";
+        + "</td><td>" + t.totalNumberOfParcels + "</td><td>" +
+        `<button type="button" onclick="removeCarrier(${t.carrierID})">Delete</button>`
+        + "</td></tr>";
     });
+}
+
+function removeCarrier(id) {
+    fetch('http://localhost:33503/carrier/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', },
+        body: null})
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();})
+        .catch((error) => { console.error('Error:', error); });
 }
 
 function createCarrier() {
