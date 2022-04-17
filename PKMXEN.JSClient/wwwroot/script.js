@@ -1,6 +1,6 @@
 ﻿let carriers = [];
 let connection = null;
-getdata();
+getCarrierData();
 setupSignalR();
 
 function setupSignalR() {
@@ -10,11 +10,11 @@ function setupSignalR() {
         .build();
 
     connection.on("CarrierCreated", (user, message) => {
-        getdata();
+        getCarrierData();
     });
 
     connection.on("CarrierDeleted", (user, message) => {
-        getdata();
+        getCarrierData();
     });
 
     connection.onclose(async () => {
@@ -33,17 +33,17 @@ async function start() {
     }
 };
 
-async function getdata() {
+async function getCarrierData() {
     await fetch('http://localhost:33503/carrier')
         .then(x => x.json())
         .then(y => {
             carriers = y;
             //console.log(carriers);
-            display();
+            displayCarrier();
         });
 }
 
-function display() {
+function displayCarrier() {
     document.getElementById('resultarea').innerHTML = "";
     carriers.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
@@ -63,7 +63,7 @@ function removeCarrier(id) {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getdata();})
+            getCarrierData();})
         .catch((error) => { console.error('Error:', error); });
 }
 
@@ -80,7 +80,7 @@ function createCarrier() {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getdata();
+            getCarrierData();
         })
         .catch((error) => { console.error('Error:', error); });
 }
