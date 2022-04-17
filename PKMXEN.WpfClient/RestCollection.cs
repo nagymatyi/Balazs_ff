@@ -16,7 +16,7 @@ namespace PKMXEN.WpfClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "carrier")
         {
             bool isOk = false;
             do
