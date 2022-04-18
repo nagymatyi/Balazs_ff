@@ -19,7 +19,7 @@ namespace PKMXEN.Models
         public string Address { get; set; } // In Address, City, ZIP Format
 
         [ForeignKey(nameof(Order))]
-        public int OrderID { get; set; }
+        public int? OrderID { get; set; }
 
         [NotMapped]
         public virtual Order Orders { get; set; }

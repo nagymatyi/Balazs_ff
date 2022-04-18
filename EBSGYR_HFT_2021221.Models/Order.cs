@@ -18,7 +18,7 @@ namespace PKMXEN.Models
         public DateTime OrderDate { get; set; }
 
         [ForeignKey(nameof(Carrier))]
-        public int CarrierID { get; set; }
+        public int? CarrierID { get; set; }
 
         public Order()
         {
