@@ -47,11 +47,13 @@ function displayCarrier() {
     document.getElementById('resultarea').innerHTML = "";
     carriers.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.carrierID + "</td><td>"
-            + t.name + "</td><td>" + t.age + "</td><td>" + t.salary
-        + "</td><td>" + t.totalNumberOfParcels + "</td><td>" +
-        `<button type="button" onclick="removeCarrier(${t.carrierID})">Delete</button>`
-        + "</td></tr>";
+        "<tr><td>" + t.carrierID +
+        "</td><td>" + t.name +
+        "</td><td>" + t.age +
+        "</td><td>" + t.salary +
+        "</td><td>" + t.totalNumberOfParcels +
+        "</td><td>" + `<button type="button" onclick="removeCarrier(${t.carrierID})">Delete</button>` +
+        "</td></tr>";
     });
 }
 
