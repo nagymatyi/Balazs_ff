@@ -1,5 +1,7 @@
 ﻿let carriers = [];
 let connection = null;
+let hidden = false;
+let selectedRow = 0;
 getCarrierData();
 setupSignalR();
 
@@ -14,6 +16,10 @@ function setupSignalR() {
     });
 
     connection.on("CarrierDeleted", (user, message) => {
+        getCarrierData();
+    });
+
+    connection.on("CarrierUpdated", (user, message) => {
         getCarrierData();
     });
 
@@ -52,7 +58,7 @@ function displayCarrier() {
         "</td><td>" + t.age +
         "</td><td>" + t.salary +
         "</td><td>" + t.totalNumberOfParcels +
-        "</td><td>" + `<button type="button" onclick="removeCarrier(${t.carrierID})">Delete</button>` +
+        "</td><td>" + `<button type="button" onclick="editCarrier(${t.carrierID})">Edit</button><button type="button" onclick="removeCarrier(${t.carrierID})">Delete</button>` +
         "</td></tr>";
     });
 }
@@ -65,7 +71,8 @@ function removeCarrier(id) {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getCarrierData();})
+            getCarrierData();
+        })
         .catch((error) => { console.error('Error:', error); });
 }
 
@@ -85,4 +92,36 @@ function createCarrier() {
             getCarrierData();
         })
         .catch((error) => { console.error('Error:', error); });
+}
+
+function editCarrier(id) {
+    for (var i = 0; i < carriers.length; i++) {
+        if (id == carriers[i].carrierID) {
+            selectedRow = i;
+            document.getElementById('name').value = carriers[i].name;
+            document.getElementById('age').value = carriers[i].age;
+            document.getElementById('salary').value = carriers[i].salary;
+            document.getElementById('tnop').value = carriers[i].totalNumberOfParcels;
+        }
+    }
+}
+
+function updateData() {
+    carriers[selectedRow].name = document.getElementById('name').value;
+    carriers[selectedRow].age = document.getElementById('age').value;
+    carriers[selectedRow].salary = document.getElementById('salary').value;
+    carriers[selectedRow].totalNumberOfParcels = document.getElementById('tnop').value;
+    displayCarrier();
+    //fetch('http://localhost:33503/carrier', {
+    //    method: 'POST',
+    //    headers: { 'Content-Type': 'application/json', },
+    //    body: JSON.stringify(
+    //        { name: Name, age: Age, salary: Salary, totalNumberOfParcels: TotalNumberOfParcels })
+    //})
+    //    .then(response => response)
+    //    .then(data => {
+    //        console.log('Success:', data);
+    //        getCarrierData();
+    //    })
+    //    .catch((error) => { console.error('Error:', error); });
 }
