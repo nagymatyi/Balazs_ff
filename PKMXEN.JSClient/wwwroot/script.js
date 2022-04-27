@@ -1,6 +1,5 @@
 ﻿let carriers = [];
 let connection = null;
-let hidden = false;
 let selectedRow = 0;
 getCarrierData();
 setupSignalR();
@@ -95,6 +94,9 @@ function createCarrier() {
 }
 
 function editCarrier(id) {
+    document.getElementById('create').style.display = 'none';
+    document.getElementById('edit').style.display = 'block';
+
     for (var i = 0; i < carriers.length; i++) {
         if (id == carriers[i].carrierID) {
             selectedRow = i;
@@ -112,8 +114,9 @@ function updateData() {
     carriers[selectedRow].salary = document.getElementById('salary').value;
     carriers[selectedRow].totalNumberOfParcels = document.getElementById('tnop').value;
     displayCarrier();
+    reset();
     //fetch('http://localhost:33503/carrier', {
-    //    method: 'POST',
+    //    method: 'PUT',
     //    headers: { 'Content-Type': 'application/json', },
     //    body: JSON.stringify(
     //        { name: Name, age: Age, salary: Salary, totalNumberOfParcels: TotalNumberOfParcels })
@@ -124,4 +127,14 @@ function updateData() {
     //        getCarrierData();
     //    })
     //    .catch((error) => { console.error('Error:', error); });
+}
+
+function reset() {
+    document.getElementById('create').style.display = 'block';
+    document.getElementById('edit').style.display = 'none';
+
+    document.getElementById('name').value = "";
+    document.getElementById('age').value = "";
+    document.getElementById('salary').value = "";
+    document.getElementById('tnop').value = "";
 }
