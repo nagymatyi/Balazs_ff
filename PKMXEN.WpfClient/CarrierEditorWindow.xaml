@@ -11,6 +11,8 @@
     </Window.DataContext>
     <Grid>
         <StackPanel x:Name="stack">
+            <Label Content="Id" Padding="10" Background="LightBlue" />
+            <TextBox Text="{Binding Actual.CarrierID, UpdateSourceTrigger=Explicit}" Padding="10"/>
             <Label Content="Name" Padding="10" Background="LightBlue" />
             <TextBox Text="{Binding Actual.Name, UpdateSourceTrigger=Explicit}" Padding="10"/>
             <Label Content="Age" Padding="10" Background="LightBlue" />

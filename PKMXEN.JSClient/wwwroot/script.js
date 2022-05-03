@@ -167,6 +167,7 @@ function update() {
         .then(data => {
             console.log('Success:', data);
             getCarrierData();
+            reset();
         })
         .catch((error) => {
             console.error('Error:', error);
