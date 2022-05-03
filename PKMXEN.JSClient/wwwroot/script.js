@@ -101,6 +101,7 @@ function editCarrier(id) {
     for (var i = 0; i < carriers.length; i++) {
         if (id == carriers[i].carrierID) {
             selectedRow = i;
+            document.getElementById('carrierid').value = carriers[i].carrierID;
             document.getElementById('name').value = carriers[i].name;
             document.getElementById('age').value = carriers[i].age;
             document.getElementById('salary').value = carriers[i].salary;
@@ -134,8 +135,40 @@ function reset() {
     document.getElementById('create').style.display = 'block';
     document.getElementById('edit').style.display = 'none';
 
+    document.getElementById('carrierid').value = "";
     document.getElementById('name').value = "";
     document.getElementById('age').value = "";
     document.getElementById('salary').value = "";
     document.getElementById('tnop').value = "";
+}
+
+function update() {
+    let ID = document.getElementById('carrierid').value;
+    let NAME = document.getElementById('name').value;
+    let AGE = document.getElementById('age').value;
+    let SALARY = document.getElementById('salary').value;
+    let TNOP = document.getElementById('tnop').value;
+
+    fetch('http://localhost:33503/carrier', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                carrierID: ID,
+                name: NAME,
+                age: AGE,
+                salary: SALARY,
+                totalNumberOfParcels: TNOP
+            }),
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getCarrierData();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
